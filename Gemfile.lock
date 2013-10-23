@@ -55,13 +55,7 @@ GEM
     mime-types (1.25)
     mongo (1.9.2)
       bson (~> 1.9.2)
-    mongo_mapper (0.12.0)
-      activemodel (~> 3.0)
-      activesupport (~> 3.0)
-      plucky (~> 0.5.2)
     multi_json (1.8.2)
-    plucky (0.5.2)
-      mongo (~> 1.5)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -115,7 +109,7 @@ DEPENDENCIES
   bson_ext
   coffee-rails (~> 3.2.1)
   jquery-rails
-  mongo_mapper
+  mongo
   rails (= 3.2.14)
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)
