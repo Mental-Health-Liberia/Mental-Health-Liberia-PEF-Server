@@ -1,4 +1,6 @@
 class FormsController < ApplicationController
+  IGNORED_PARAM_KEYS = [:format, :controller, :action]
+
   def index
     @forms = MongoConfig.db['forms'].find.to_a
 
@@ -9,15 +11,14 @@ class FormsController < ApplicationController
   end
 
   def create
-    id = MongoConfig.db['forms'].insert(params)
-
-    if id
-      redirect_to id
-    end
+    id = MongoConfig.db['forms'].insert(@params.except(*IGNORED_PARAM_KEYS))
+    
+    @params[:id] = id.to_s
+    self.show
   end
 
   def show
-    @form = MongoConfig.db['forms'].find("_id" => BSON::ObjectId(params[:id])).to_a
+    @form = MongoConfig.db['forms'].find("_id" => BSON::ObjectId(@params[:id])).to_a
 
     respond_to do |format|
       format.json { render json: @form }
