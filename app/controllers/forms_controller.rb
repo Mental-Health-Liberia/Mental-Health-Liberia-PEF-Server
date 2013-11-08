@@ -18,11 +18,18 @@ class FormsController < ApplicationController
   end
 
   def show
-    @form = MongoConfig.db['forms'].find("_id" => BSON::ObjectId(@params[:id])).to_a
+    if BSON::ObjectId.legal?(@params[:id]) == false
+      respond_to do |format|
+        format.json { render :json => { :success => false } }
+        format.xml { render :xml => { :success => false } }
+      end
+    else
+      @form = MongoConfig.db['forms'].find("_id" => BSON::ObjectId(@params[:id])).to_a
 
-    respond_to do |format|
-      format.json { render json: @form }
-      format.xml { render xml: @form }
+      respond_to do |format|
+        format.json { render json: @form }
+        format.xml { render xml: @form }
+      end
     end
   end
 end
