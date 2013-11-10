@@ -61,12 +61,22 @@ class FormsControllerTest < ActionController::TestCase
   test "should fail for requesting a single form with a bad id" do
     get(:show, {:format => "json", "id" => 0})
 
-    assert_response 200, @response.body
+    assert_response :success, @response.body
+
+    json = ActiveSupport::JSON.decode(@response.body)
+
+    assert_not_nil json
+    assert_equal json["error"], "The given id was not a valid BSON ObjectId."
   end
 
   test "should fail for requesting a non-existent single form" do
     get(:show, {:format => "json", "id" => "527d1e3a14b849bc70000001"})
 
-    assert_response 200, @response.body
+    assert_response :success, @response.body
+
+    json = ActiveSupport::JSON.decode(@response.body)
+
+    assert_not_nil json["error"]
+    assert_equal json["error"], "The given id was not found."
   end
 end

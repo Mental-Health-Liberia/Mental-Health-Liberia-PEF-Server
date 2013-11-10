@@ -19,16 +19,31 @@ class FormsController < ApplicationController
 
   def show
     if BSON::ObjectId.legal?(@params[:id]) == false
+      message = {
+        "error" => "The given id was not a valid BSON ObjectId."
+      }
+
       respond_to do |format|
-        format.json { render :json => { :success => false } }
-        format.xml { render :xml => { :success => false } }
+        format.json { render :json => message }
+        format.xml { render :xml => message }
       end
     else
       @form = MongoConfig.db['forms'].find("_id" => BSON::ObjectId(@params[:id])).to_a
 
-      respond_to do |format|
-        format.json { render json: @form }
-        format.xml { render xml: @form }
+      if @form.length == 0
+        message = {
+          "error" => "The given id was not found."
+        }
+
+        respond_to do |format|
+          format.json { render :json => message }
+          format.xml { render :xml => message }
+        end
+      else
+        respond_to do |format|
+          format.json { render json: @form }
+          format.xml { render xml: @form }
+        end
       end
     end
   end
