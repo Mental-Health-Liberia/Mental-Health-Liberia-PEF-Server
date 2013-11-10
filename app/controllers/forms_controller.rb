@@ -1,6 +1,8 @@
 class FormsController < ApplicationController
   IGNORED_PARAM_KEYS = [:format, :controller, :action]
 
+  before_filter :authenticate_user!
+
   def index
     @forms = MongoConfig.db['forms'].find.to_a
 
