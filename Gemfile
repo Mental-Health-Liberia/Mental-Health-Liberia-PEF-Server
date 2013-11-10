@@ -5,6 +5,7 @@ gem 'bson_ext'
 gem 'mongo'
 
 gem "mongoid", "~> 3.0.0"
+gem "devise"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
