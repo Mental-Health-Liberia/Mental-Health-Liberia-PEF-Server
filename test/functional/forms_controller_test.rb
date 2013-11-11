@@ -57,6 +57,25 @@ class FormsControllerTest < ActionController::TestCase
     assert_equal json[0]["name"], "tanner"
   end
 
+  test "should show filtered forms if there are forms that match the filter" do
+    MongoConfig.db['forms'].insert({"name" => "tanner"})
+    MongoConfig.db['forms'].insert({"name" => "george"})
+
+    user = FactoryGirl.create(:user)
+    sign_in :user, user
+
+    get(:index, {:format => "json", "name" => "tanner"})
+
+    assert_response :success, @response.body
+    assert_not_nil @response.body
+
+    json = ActiveSupport::JSON.decode(@response.body)
+
+    assert_equal json.length, 1
+    assert_not_nil json[0]["_id"]
+    assert_equal json[0]["name"], "tanner"
+  end
+
   test "should show multiple forms if there exist forms" do
     MongoConfig.db['forms'].insert({"name" => "tanner"})
     MongoConfig.db['forms'].insert({"name" => "ryan"})

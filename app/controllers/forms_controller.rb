@@ -4,7 +4,13 @@ class FormsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @forms = MongoConfig.db['forms'].find.to_a
+    @params.except!(*IGNORED_PARAM_KEYS)
+
+    if @params.length > 0
+      @forms = MongoConfig.db['forms'].find(@params).to_a
+    else
+      @forms = MongoConfig.db['forms'].find.to_a
+    end
 
     respond_to do |format|
       format.json { render json: @forms }
