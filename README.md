@@ -7,7 +7,19 @@ It serves an API to allow both the web frontend and a data dashboard. The data d
 This project is a part of the Computing for Good class led by [Ellen Zegura](http://www.cc.gatech.edu/~ewz/Welcome.html) at the [Georgia Institute of Technology](http://www.gatech.edu).
 
 ## API
-API documentation goes here.
+The API can be requested in either JSON or XML format.
+
+`GET /forms.json`
+
+Returns a JSON array of all the forms that are in the database.
+
+`POST /forms.json`
+
+Creates a new form with the given POST parameters.
+
+`GET /forms/:id.json`
+
+Returns a JSON object of the form with the id `:id`.
 
 ### Group Members
 * Ryan Ashcraft
