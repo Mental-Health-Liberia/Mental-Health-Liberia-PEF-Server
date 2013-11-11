@@ -6,6 +6,7 @@ class ActiveSupport::TestCase
   # Drop all collections after each test case.
   def teardown
     MongoConfig.db['forms'].remove()
+    MongoConfig.db['users'].remove()
   end
 
   # Make sure that each test case has a teardown
@@ -19,4 +20,5 @@ end
 
 class ActionController::TestCase
   include Devise::TestHelpers
+  include FactoryGirl::Syntax::Methods
 end

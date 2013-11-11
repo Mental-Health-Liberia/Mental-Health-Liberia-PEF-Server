@@ -7,6 +7,8 @@ gem 'mongo'
 gem "mongoid", "~> 3.0.0"
 gem "devise"
 
+gem "factory_girl_rails"
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
