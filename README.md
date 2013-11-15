@@ -43,4 +43,4 @@ Returns a JSON object of the form with the id `:id`.
 * Ryan Ashcraft
 * Tanner Smith
 * John Dugan
-* Alex Saterly
+* Alex Satterly
