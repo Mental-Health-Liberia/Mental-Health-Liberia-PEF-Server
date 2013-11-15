@@ -1,7 +1,9 @@
 Pef::Application.routes.draw do
   devise_for :users,
+             :path_refix => 'd',
              controllers: {:sessions => "sessions"}
 
+  resources :users
   resources :forms
   resources :configuration, :only => [:index, :create, :destroy]
 
