@@ -3,6 +3,9 @@ class FormsController < ApplicationController
 
   before_filter :authenticate_user!
 
+  before_filter :ensure_write_api_access, only: [:create]
+  before_filter :ensure_read_api_access, except: [:create]
+
   def index
     @params.except!(*IGNORED_PARAM_KEYS)
 

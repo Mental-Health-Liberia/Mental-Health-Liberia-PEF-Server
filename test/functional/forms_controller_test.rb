@@ -9,8 +9,25 @@ class FormsControllerTest < ActionController::TestCase
     assert_response 302, @response.body
   end
 
-  test "should not create with no parameters" do
+  test "should not have access to write API without permission" do
     user = FactoryGirl.create(:user)
+    sign_in :user, user
+
+    post(:create, {:format => "json"})
+    assert_response 302, @response.body
+  end
+
+  test "should not have access to read API without permission" do
+    user = FactoryGirl.create(:user)
+    sign_in :user, user
+
+    get(:index, {:format => "json"})
+
+    assert_response 302, @response.body
+  end
+
+  test "should not create with no parameters" do
+    user = FactoryGirl.create(:user, write_api: true)
     sign_in :user, user
 
     post(:create,  {})
@@ -18,7 +35,7 @@ class FormsControllerTest < ActionController::TestCase
   end
 
   test "should create with only format parameter" do
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user, write_api: true)
     sign_in :user, user
 
     post(:create, {:format => "json"})
@@ -31,7 +48,7 @@ class FormsControllerTest < ActionController::TestCase
   end
 
   test "should show no forms if no forms exist" do
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user, read_api: true)
     sign_in :user, user
 
     get(:index, {:format => "json"})
@@ -42,7 +59,7 @@ class FormsControllerTest < ActionController::TestCase
   test "should show forms if there exist forms" do
     MongoConfig.db['forms'].insert({"name" => "tanner"})
 
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user, read_api: true)
     sign_in :user, user
 
     get(:index, {:format => "json"})
@@ -61,7 +78,7 @@ class FormsControllerTest < ActionController::TestCase
     MongoConfig.db['forms'].insert({"name" => "tanner"})
     MongoConfig.db['forms'].insert({"name" => "george"})
 
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user, read_api: true)
     sign_in :user, user
 
     get(:index, {:format => "json", "name" => "tanner"})
@@ -80,7 +97,7 @@ class FormsControllerTest < ActionController::TestCase
     MongoConfig.db['forms'].insert({"name" => "tanner"})
     MongoConfig.db['forms'].insert({"name" => "ryan"})
 
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user, read_api: true)
     sign_in :user, user
 
     get(:index, {:format => "json"})
@@ -100,7 +117,7 @@ class FormsControllerTest < ActionController::TestCase
   end
 
   test "should fail for requesting a single form with a bad id" do
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user, read_api: true)
     sign_in :user, user
 
     get(:show, {:format => "json", "id" => 0})
@@ -114,7 +131,7 @@ class FormsControllerTest < ActionController::TestCase
   end
 
   test "should fail for requesting a non-existent single form" do
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user, read_api: true)
     sign_in :user, user
 
     get(:show, {:format => "json", "id" => "527d1e3a14b849bc70000001"})
