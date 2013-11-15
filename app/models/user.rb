@@ -11,7 +11,7 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :write_api, :read_api, :manage_users, :modify_configuration
 
   ## Database authenticatable
   field :username,           :type => String, :default => ""
@@ -32,6 +32,12 @@ class User
   field :last_sign_in_at,    :type => Time
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
+
+  ## Permisions
+  field :write_api,             :type => Boolean, :default => false
+  field :read_api,              :type => Boolean, :default => false
+  field :manage_users,          :type => Boolean, :default => false
+  field :modify_configuration,  :type => Boolean, :default => false
 
   def email_required?
     return false
