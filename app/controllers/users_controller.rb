@@ -4,7 +4,13 @@ class UsersController < ApplicationController
   before_filter :ensure_manage_users_access
 
   def user_params
-    params["user"]
+    user_params = params["user"]
+
+    if user_params[:password].blank?
+      user_params.delete("password")
+    end
+
+    user_params
   end
 
   def index
