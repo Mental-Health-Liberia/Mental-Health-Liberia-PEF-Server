@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @current_user = current_user
   end
 
   def edit
@@ -32,8 +33,12 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to users_path
+    if Moped::BSON::ObjectId.from_string(params[:id]) === current_user.id
+      redirect_to users_path
+    else
+      @user = User.find(params[:id])
+      @user.destroy
+      redirect_to users_path
+    end
   end
 end
