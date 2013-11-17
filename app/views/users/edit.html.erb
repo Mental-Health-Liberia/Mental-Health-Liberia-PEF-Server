@@ -1,0 +1,20 @@
+<h1>Edit User</h1>
+
+<%= form_for @user do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+
+  <%= f.label :write_api %>
+  <%= f.check_box :write_api %>
+
+  <%= f.label :read_api %>
+  <%= f.check_box :read_api %>
+
+  <%= f.label :modify_configuration %>
+  <%= f.check_box :modify_configuration %>
+
+  <%= f.label :manage_users %>
+  <%= f.check_box :manage_users %>
+
+  <%= f.submit "Save changes" %>
+<% end %>

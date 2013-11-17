@@ -1,0 +1,21 @@
+<table>
+  <tr>
+    <th>Username</th>
+    <th>Write API</th>
+    <th>Read API</th>
+    <th>Modify Configuration</th>
+    <th>Manage Users</th>
+    <th></th>
+  </tr>
+  <% @users.each do |user| %>
+  <tr>
+    <td><%= user.username %></td>
+    <td><%= user.write_api %></td>
+    <td><%= user.read_api %></td>
+    <td><%= user.modify_configuration %></td>
+    <td><%= user.manage_users %></td>
+    <td><%= link_to "Edit", edit_user_path(user) %></td>
+    <td><%= link_to "Remove", user, method: :delete, data: { confirm: "Are you sure?" } %></td>
+  </tr>
+  <% end %>
+</table>
