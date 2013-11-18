@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PEF</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "application", "/jsoneditor/jsoneditor-min.css", :media => "screen" %>
+
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    #jsoneditor {
+      position: absolute;
+      top: 1em;
+      right: 1em;
+      bottom: 3em;
+      left: 1em;
+    }
+
+    .jsoneditor_data_form {
+      position: absolute;
+      bottom: 1em;
+      right: 1em;
+      left: 1em;
+    }
+
+    .jsoneditor_data_form textarea {
+      display: none;
+    }
+
+    .restore {
+      float: right;
+    }
+  </style>
+
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "application", "/jsoneditor/jsoneditor-min.js" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, class: name %>
+<% end -%>
+
+<%= yield %>
+
+</body>
+</html>

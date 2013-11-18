@@ -1,0 +1,31 @@
+<div id="jsoneditor"></div>
+
+<div class="jsoneditor_data_form">
+  <% if FormConfiguration.count > 0 %>
+    <div class="restore">
+      <%= button_to "Revert to Previous Saved Configuration", configuration_path(@active_configuration), method: :delete %>
+    </div> 
+  <% end %>
+
+  <%= form_for @active_configuration, url: { action: "create" }, method: "POST" do |f| %>
+    <%= f.text_area :body %>
+    <%= f.submit "Save" %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  // create the editor
+  var container = document.getElementById("jsoneditor");
+  var editor = new jsoneditor.JSONEditor(container);
+
+  // set json
+  var decoded = $("<div/>").html("<%= @active_configuration.body.gsub(/\r\n/, '') %>").text();
+  var json = JSON.parse(decoded);
+  editor.set(json);
+
+  // get json
+  $("form").submit(function (e) {
+    var json = editor.get();
+    $("#form_configuration_body").text(JSON.stringify(json));
+  });
+</script>

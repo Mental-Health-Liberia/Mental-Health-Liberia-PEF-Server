@@ -3,10 +3,9 @@ Pef::Application.routes.draw do
              controllers: {:sessions => "sessions"}
 
   resources :forms
+  resources :configurations, :only => [:index, :create, :destroy]
 
   root :to => "home#index"
-
-  # devise_for :users, :controllers => {:sessions => 'sessions'}
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
