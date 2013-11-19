@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ConfigurationsControllerTest < ActionController::TestCase
+class ConfigurationControllerTest < ActionController::TestCase
   test "should create with only format parameter" do
     user = FactoryGirl.create(:user, write_api: true)
     sign_in :user, user

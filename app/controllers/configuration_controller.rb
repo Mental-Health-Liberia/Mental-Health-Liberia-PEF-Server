@@ -1,5 +1,5 @@
-class ConfigurationsController < ApplicationController
-  include ConfigurationsHelper
+class ConfigurationController < ApplicationController
+  include ConfigurationHelper
 
   layout 'jsoneditor'
 

@@ -3,7 +3,7 @@ Pef::Application.routes.draw do
              controllers: {:sessions => "sessions"}
 
   resources :forms
-  resources :configurations, :only => [:index, :create, :destroy]
+  resources :configuration, :only => [:index, :create, :destroy]
 
   root :to => "home#index"
 
