@@ -31,6 +31,8 @@ The API can be requested in either JSON or XML format.
 
 Returns a JSON array of all the forms that are in the database.
 
+`skip` and `limit` parameters can be specified to skip or limit the number of documents returned (per the [find method](http://api.mongodb.org/ruby/1.9.2/Mongo/Collection.html#find-instance_method)).
+
 `POST /forms.json`
 
 Creates a new form with the given POST parameters.
