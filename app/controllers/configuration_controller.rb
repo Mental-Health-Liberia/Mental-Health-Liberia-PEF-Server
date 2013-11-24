@@ -1,6 +1,8 @@
 class ConfigurationController < ApplicationController
   include ConfigurationHelper
 
+  before_filter :authenticate_user!, :ensure_modify_configuration_access
+
   layout 'jsoneditor'
 
   def index
