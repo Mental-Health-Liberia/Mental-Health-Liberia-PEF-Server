@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ConfigurationControllerTest < ActionController::TestCase
   test "should create with only format parameter" do
-    user = FactoryGirl.create(:user, write_api: true)
+    user = FactoryGirl.create(:user, modify_configuration: true)
     sign_in :user, user
 
     post(:create, {:format => "json"})
@@ -15,7 +15,7 @@ class ConfigurationControllerTest < ActionController::TestCase
   end
 
   test "should show no configurations if no configurations exist" do
-    user = FactoryGirl.create(:user, read_api: true)
+    user = FactoryGirl.create(:user)
     sign_in :user, user
 
     get(:index, {:format => "json"})
