@@ -1,5 +1,5 @@
 class FormsController < ApplicationController
-  IGNORED_PARAM_KEYS = [:format, :controller, :action]
+  IGNORED_PARAM_KEYS = [:format, :controller, :action, :skip, :limit]
 
   before_filter :authenticate_user!
 
@@ -7,12 +7,20 @@ class FormsController < ApplicationController
   before_filter :ensure_read_api_access, except: [:create]
 
   def index
-    @params.except!(*IGNORED_PARAM_KEYS)
+    @filter_params = @params.except(*IGNORED_PARAM_KEYS)
 
-    if @params.length > 0
-      @forms = MongoConfig.db['forms'].find(@params).to_a
+    skip = @params[:skip] ? @params[:skip] : 0
+    limit = @params[:limit] ? @params[:limit] : 10
+
+    options = {
+      :skip => skip,
+      :limit => limit
+    }
+
+    if @filter_params.length > 0
+      @forms = MongoConfig.db['forms'].find(@filter_params).to_a
     else
-      @forms = MongoConfig.db['forms'].find.to_a
+      @forms = MongoConfig.db['forms'].find({}, options).to_a
     end
 
     respond_to do |format|

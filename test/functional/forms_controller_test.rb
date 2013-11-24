@@ -143,4 +143,42 @@ class FormsControllerTest < ActionController::TestCase
     assert_not_nil json["error"]
     assert_equal json["error"], "The given id was not found."
   end
+
+  test "should show limited number of forms if specified" do
+    MongoConfig.db['forms'].insert({"name" => "tanner"})
+    MongoConfig.db['forms'].insert({"name" => "george"})
+
+    user = FactoryGirl.create(:user, read_api: true)
+    sign_in :user, user
+
+    get(:index, {:format => "json", :limit => 1})
+
+    assert_response :success, @response.body
+    assert_not_nil @response.body
+
+    json = ActiveSupport::JSON.decode(@response.body)
+
+    assert_equal json.length, 1
+    assert_not_nil json[0]["_id"]
+    assert_equal json[0]["name"], "tanner"
+  end
+
+  test "should show limited number of forms with offset if specified" do
+    MongoConfig.db['forms'].insert({"name" => "tanner"})
+    MongoConfig.db['forms'].insert({"name" => "george"})
+
+    user = FactoryGirl.create(:user, read_api: true)
+    sign_in :user, user
+
+    get(:index, {:format => "json", :limit => 1, :skip => 1})
+
+    assert_response :success, @response.body
+    assert_not_nil @response.body
+
+    json = ActiveSupport::JSON.decode(@response.body)
+
+    assert_equal json.length, 1
+    assert_not_nil json[0]["_id"]
+    assert_equal json[0]["name"], "george"
+  end
 end
