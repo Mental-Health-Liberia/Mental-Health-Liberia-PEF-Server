@@ -74,6 +74,8 @@ These instructions are taken from the [Phusion Passenger Users Guide](http://www
 
 Add the following to your Apache configuration file (e.g. in `/etc/apache2/sites-enabled/`):
 ```
+PassengerRuby PATH_TO_RUBY
+
 <VirtualHost *:80>
     ServerName www.example.com
     DocumentRoot /webapps/Mental-Health-Liberia-PEF-Server/public
@@ -83,6 +85,8 @@ Add the following to your Apache configuration file (e.g. in `/etc/apache2/sites
     </Directory>
 </VirtualHost>
 ```
+
+`PATH_TO_RUBY` is the result of the `which ruby`, i.e. the version of Ruby we would like Passenger to use to run this app.
 
 After doing so, restart apache:
 ```
