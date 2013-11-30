@@ -1,7 +1,7 @@
 # Deployment
 Deploying the PEF server is like deploying any Rails app with some small differences.
 
-The instructions below are for deploying PEF using Phusion Passenger. It assumes a fresh Ubuntu 12.04 server install with LAMP setup.
+The instructions below are for deploying PEF using [Phusion Passenger](https://www.phusionpassenger.com). It assumes a fresh [Ubuntu 12.04 Server](http://www.ubuntu.com/download/server) install with LAMP setup (option in the installation).
 
 Some instructions are copied straight from users guides for the respective technologies; if in doubt, reference them for exact or updated instructions.
 
