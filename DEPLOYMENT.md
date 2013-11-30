@@ -72,7 +72,7 @@ At this point, we should be able to run `rails server` and have the server succe
 ## Apache Configuration
 These instructions are taken from the [Phusion Passenger Users Guide](http://www.modrails.com/documentation/Users%20guide%20Apache.html#_deploying_a_rack_based_ruby_application_including_rails_gt_3).
 
-Add the following to your Apache configuration file:
+Add the following to your Apache configuration file (e.g. in `/etc/apache2/sites-enabled/`):
 ```
 <VirtualHost *:80>
     ServerName www.example.com
