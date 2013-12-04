@@ -8,7 +8,7 @@ This project is a part of the Computing for Good class led by [Ellen Zegura](htt
 
 ## Installation
 The server requires the following software packages to be installed:
- - [Ruby](https://www.ruby-lang.org/en/)
+ - [Ruby](https://www.ruby-lang.org/en/) (v1.9.3-p484)
  - [RubyGems](http://rubygems.org/) 
  - [MongoDB](http://www.mongodb.org/) (if you're on OS X, use [Homebrew](http://brew.sh/) to install via `brew install mongo`.)
 
