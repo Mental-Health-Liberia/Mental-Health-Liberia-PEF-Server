@@ -1,3 +1,5 @@
+# API
+
 The API can be requested in either JSON or XML format.
 
 `GET /forms.json`
