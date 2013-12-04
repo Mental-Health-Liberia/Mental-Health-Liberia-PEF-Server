@@ -95,6 +95,34 @@ After doing so, restart apache:
 sudo apachectl restart
 ```
 
+## Installing the Web Frontend
+This does not have to be done on the server, it can be done on your local computer.
+
+Essentially, what will happen here is you will "build" a copy of the frontend and move that to the PEF Ruby on Rails app.
+
+### Get the Frontend
+```
+git clone https://github.com/Mental-Health-Liberia/Mental-Health-Liberia-PEF-Client.git
+```
+
+### Build the Frontend
+These instructions are taken from the [PEF Fronend's README](https://github.com/Mental-Health-Liberia/Mental-Health-Liberia-PEF-Client/blob/master/README.md#how-to-run).
+
+First get the dependencies:
+```
+npm install
+bower install
+bundle
+```
+
+And then build!
+```
+grunt build
+```
+
+### Copy `dist` to Server App
+Move the contents of the `dist` directory to the server app's `public` directory.
+
 ## Done
 At this point, the server should be running and accessible via the `www.example.com`.
 
