@@ -24,6 +24,15 @@ If you want to run both the server and the [web frontend](https://github.com/Tan
 3. In the `public/` directory in the server app, make a symbolic link to the web frontend directory, i.e. `ln -s front-end-path dist`.
 4. Once that is done, start the server and go to `0.0.0.0:3000/dist/` to view the client app and submit forms.
 
+### Deployment
+Information about deployment can be found in [DEPLOYMENT.md](DEPLOYMENT.md).
+
+## API
+Information about the read/write API can be found in [API.md](API.md).
+
+## Users
+Information about user creation/modification/management can be found in [USERS.md](USERS.md).
+
 ### Group Members
 * Ryan Ashcraft
 * Tanner Smith
