@@ -54,6 +54,8 @@ NodeJS is a javascript executable environment required for Rails to run.
 sudo apt-get install git nodejs
 ```
 
+Note: Some repositories hold an old version of node (0.6.x). To get an updated version read the [instructions from Node.JS](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager#ubuntu-mint-elementary-os).
+
 ## Get PEF Server
 ```
 sudo mkdir /webapps
