@@ -24,23 +24,6 @@ If you want to run both the server and the [web frontend](https://github.com/Tan
 3. In the `public/` directory in the server app, make a symbolic link to the web frontend directory, i.e. `ln -s front-end-path dist`.
 4. Once that is done, start the server and go to `0.0.0.0:3000/dist/` to view the client app and submit forms.
 
-## API
-The API can be requested in either JSON or XML format.
-
-`GET /forms.json`
-
-Returns a JSON array of all the forms that are in the database.
-
-`skip` and `limit` parameters can be specified to skip or limit the number of documents returned (per the [find method](http://api.mongodb.org/ruby/1.9.2/Mongo/Collection.html#find-instance_method)).
-
-`POST /forms.json`
-
-Creates a new form with the given POST parameters.
-
-`GET /forms/:id.json`
-
-Returns a JSON object of the form with the id `:id`.
-
 ### Group Members
 * Ryan Ashcraft
 * Tanner Smith
