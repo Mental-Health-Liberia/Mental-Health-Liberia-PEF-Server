@@ -1,7 +1,7 @@
 class ConfigurationController < ApplicationController
   include ConfigurationHelper
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:index]
   before_filter :ensure_modify_configuration_access, except: [:index, :show]
 
   layout 'jsoneditor'
@@ -14,7 +14,9 @@ class ConfigurationController < ApplicationController
     end
 
     respond_to do |format|
-      format.html
+      format.html {
+        redirect_to :root unless current_user and current_user.modify_configuration?
+      }
       format.json { render json: @active_configuration.body }
       format.xml { render xml: @active_configuration.body }
     end
