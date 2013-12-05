@@ -38,3 +38,4 @@ Information about user creation/modification/management can be found in [USERS.m
 * Tanner Smith
 * John Dugan
 * Alex Satterly
+* Melaena Roberts
